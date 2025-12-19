@@ -14,11 +14,8 @@ return new class extends Migration
         //
         Schema::create('counter', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('kode_barang')->default(0);
-            $table->bigInteger('kode_satuan')->default(0);
-            $table->bigInteger('kode_pelanggan')->default(0);
-            $table->bigInteger('kode_supplier')->default(0);
-            $table->bigInteger('kode_jabatan')->default(0);
+            $table->bigInteger('noreg')->default(0);
+            $table->bigInteger('norm')->default(0);
             $table->timestamps();
         });
     }

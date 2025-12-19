@@ -38,11 +38,8 @@ class DatabaseSeeder extends Seeder
         $conter = DB::table('counter')->first();
         if (!$conter) {
             DB::table('counter')->insert([
-                'kode_barang' => 0,
-                'kode_pelanggan' => 0,
-                'kode_satuan' => 0,
-                'kode_supplier' => 0,
-                'kode_jabatan' => 0
+                'noreg' => 0,
+                'norm' => 0,
             ]);
         }
         // seeder menu
