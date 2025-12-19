@@ -71,8 +71,8 @@ class User extends Authenticatable
     ];
 
 
-    public function akses()
-    {
-        return $this->hasMany(HakAkses::class, 'user_id', 'id');
-    }
+    // public function akses()
+    // {
+    //     return $this->hasMany(HakAkses::class, 'user_id', 'id');
+    // }
 }
