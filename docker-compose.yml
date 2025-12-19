@@ -1,13 +1,13 @@
 services:
     app:
-        image: apotik-klinik-app
+        image: emars-app
         build:
             args:
                 user: harry
                 uid: 1000
             context: ./
             dockerfile: Dockerfile.dev
-        container_name: apotik-klinik-app
+        container_name: emars-app
         working_dir: /var/www/
         restart: unless-stopped
         # ports:
@@ -25,7 +25,7 @@ services:
     db:
         image: mysql/mysql-server:5.7
         platform: linux/amd64
-        container_name: mysql_apotik_klinik
+        container_name: mysql_emars
         restart: unless-stopped
         environment:
             MYSQL_DATABASE: ${DB_DATABASE:-local_laravel}
@@ -33,7 +33,7 @@ services:
             MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
             MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
         ports:
-            - "3357:3306"
+            - "3358:3306"
         volumes:
             - mysql_data:/var/lib/mysql
             - ./docker-compose/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
@@ -51,14 +51,14 @@ services:
 
     nginx:
         image: nginx:alpine
-        container_name: nginx_apotik_klinik
+        container_name: nginx_emars
         restart: unless-stopped
         depends_on:
             - app
 
         ports:
             # - "8182:80"
-            - "8189:80"
+            - "8190:80"
         volumes:
             - ./:/var/www
             - ./docker-compose/nginx:/etc/nginx/conf.d
@@ -73,18 +73,18 @@ services:
 
     redis:
         image: redis:7
-        container_name: redis-server-apotik-klinik
+        container_name: redis-server-emars
         restart: unless-stopped
         volumes:
             - redis_data:/data
         ports:
-            - "26757:6379"
+            - "26758:6379"
         networks:
             - harrynet
 
     scheduler:
-        image: apotik-klinik-app # Pakai image dari app
-        container_name: apotik-klinik-scheduler
+        image: emars-app # Pakai image dari app
+        container_name: emars-scheduler
         command: ["php", "artisan", "schedule:work"]
         depends_on:
             - app
