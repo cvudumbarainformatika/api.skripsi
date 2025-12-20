@@ -58,7 +58,7 @@ class RuanganController extends Controller
         }
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil disimpan'
+            'message' => 'Data Ruangan berhasil disimpan'
         ]);
     }
 
@@ -67,13 +67,13 @@ class RuanganController extends Controller
         $data = Ruangan::find($request->id);
         if (!$data) {
             return new JsonResponse([
-                'message' => 'Data Dokter tidak ditemukan'
+                'message' => 'Data Ruangan tidak ditemukan'
             ], 410);
         }
         $data->update(['hidden' => '1']);
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil dihapus'
+            'message' => 'Data Ruangan berhasil dihapus'
         ]);
     }
 }
