@@ -58,7 +58,7 @@ class PekerjaanController extends Controller
         }
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil disimpan'
+            'message' => 'Data Pekerjaan berhasil disimpan'
         ]);
     }
 
@@ -67,13 +67,13 @@ class PekerjaanController extends Controller
         $data = Pekerjaan::find($request->id);
         if (!$data) {
             return new JsonResponse([
-                'message' => 'Data Dokter tidak ditemukan'
+                'message' => 'Data Pekerjaan tidak ditemukan'
             ], 410);
         }
         $data->update(['hidden' => '1']);
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil dihapus'
+            'message' => 'Data Pekerjaan berhasil dihapus'
         ]);
     }
 }

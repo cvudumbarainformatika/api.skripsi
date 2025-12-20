@@ -58,7 +58,7 @@ class CaraMasukController extends Controller
         }
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil disimpan'
+            'message' => 'Data Cara Masuk berhasil disimpan'
         ]);
     }
 
@@ -67,13 +67,13 @@ class CaraMasukController extends Controller
         $data = CaraMasuk::find($request->id);
         if (!$data) {
             return new JsonResponse([
-                'message' => 'Data Dokter tidak ditemukan'
+                'message' => 'Data Cara Masuk tidak ditemukan'
             ], 410);
         }
         $data->update(['hidden' => '1']);
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil dihapus'
+            'message' => 'Data Cara Masuk berhasil dihapus'
         ]);
     }
 }

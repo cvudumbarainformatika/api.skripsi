@@ -58,7 +58,7 @@ class AgamaController extends Controller
         }
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil disimpan'
+            'message' => 'Data Agama berhasil disimpan'
         ]);
     }
 
@@ -67,13 +67,13 @@ class AgamaController extends Controller
         $data = Agama::find($request->id);
         if (!$data) {
             return new JsonResponse([
-                'message' => 'Data Dokter tidak ditemukan'
+                'message' => 'Data Agama tidak ditemukan'
             ], 410);
         }
         $data->update(['hidden' => '1']);
         return new JsonResponse([
             'data' => $data,
-            'message' => 'Data Dokter berhasil dihapus'
+            'message' => 'Data Agama berhasil dihapus'
         ]);
     }
 }
