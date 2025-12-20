@@ -35,7 +35,7 @@ class PekerjaanController extends Controller
         return new JsonResponse($resp);
     }
 
-    public function store(Request $request)
+    public function simpan(Request $request)
     {
         $kode = $request->kode ?? null;
         $validated = $request->validate([

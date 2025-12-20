@@ -35,11 +35,11 @@ class DokterController extends Controller
         return new JsonResponse($resp);
     }
 
-    public function store(Request $request)
+    public function simpan(Request $request)
     {
         $kode = $request->kode ?? null;
         $validated = $request->validate([
-            'nama_dokter' => 'required',
+            'nama' => 'required',
             'kode' => 'nullable',
             'dpjp' => 'required',
         ], [
