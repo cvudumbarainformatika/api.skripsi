@@ -39,12 +39,10 @@ class PendidikanController extends Controller
     {
         $kode = $request->kode ?? null;
         $validated = $request->validate([
-            'nama_dokter' => 'required',
+            'nama' => 'required',
             'kode' => 'nullable',
-            'dpjp' => 'required',
         ], [
             'nama.required' => 'Nama wajib diisi.',
-            'alamat.required' => 'Alamat wajib diisi.'
         ]);
 
 
@@ -55,7 +53,7 @@ class PendidikanController extends Controller
             $validated
         );
         if (!$kode) {
-            $newKode = str_pad($data->id, 4, '0', STR_PAD_LEFT) . 'DR';
+            $newKode = str_pad($data->id, 4, '0', STR_PAD_LEFT) . 'SS';
             $data->update(['kode' => $newKode]);
         }
         return new JsonResponse([
