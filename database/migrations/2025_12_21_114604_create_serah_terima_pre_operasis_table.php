@@ -30,14 +30,9 @@ return new class extends Migration
             $table->string('penandaan', 50)->nullable();
             $table->string('hasil_pemeriksaan')->nullable();
             $table->string('alat_kesehatan', 50)->nullable();
-            $table->string('implan', 50)->nullable();
-            $table->string('lainnya', 50)->nullable();
+            $table->string('alat_kesehatan_lainnya', 50)->nullable();
             $table->string('jenis_darah', 50)->nullable();
-            $table->string('prc', 50)->nullable();
-            $table->string('wb', 50)->nullable();
-            $table->string('trombosit', 50)->nullable();
-            $table->string('plasma', 50)->nullable();
-            $table->string('jumlah', 50)->nullable();
+            $table->string('jumlah_darah', 50)->nullable();
             $table->string('vital_td', 50)->nullable();
             $table->string('vital_n', 50)->nullable();
             $table->string('vital_s', 50)->nullable();
