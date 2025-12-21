@@ -18,4 +18,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(PenanggungJawabPasien::class, 'noreg', 'noreg');
     }
+    public function sertipreop()
+    {
+        return $this->belongsTo(SerahTerimaPreOperasi::class, 'noreg', 'noreg');
+    }
 }
