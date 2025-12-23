@@ -22,4 +22,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(SerahTerimaPreOperasi::class, 'noreg', 'noreg');
     }
+    public function pengkajian_pre_anastesi()
+    {
+        return $this->belongsTo(PengkajianPreAnastesi::class, 'noreg', 'noreg');
+    }
 }
