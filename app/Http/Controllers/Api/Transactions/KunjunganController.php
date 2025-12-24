@@ -27,7 +27,7 @@ class KunjunganController extends Controller
             'to' => request('to') . ' 23:59:59' ?? date('Y-m-d') . ' 23:59:59',
         ];
         $raw = Kunjungan::query();
-        $raw->select('kunjungans.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm');
+        $raw->select('kunjungans.*', 'pasiens.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm');
         $raw->when(request('q'), function ($k) {
             $k->where(function ($q) {
                 $q->where('pasiens.nama', 'like', '%' . request('q') . '%')
