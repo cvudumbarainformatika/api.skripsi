@@ -23,12 +23,14 @@ class PasienController extends Controller
             'per_page' => request('per_page') ?? 10,
         ];
         $raw = Pasien::query();
-        $raw->when(request('q'), function ($q) {
-            $q->where('nama', 'like', '%' . request('q') . '%')
-                ->orWhere('norm', 'like', '%' . request('q') . '%')
-                ->orWhere('nomor_asuransi', 'like', '%' . request('q') . '%')
-                ->orWhere('nama_asuransi', 'like', '%' . request('q') . '%')
-                ->orWhere('nik', 'like', '%' . request('q') . '%');
+        $raw->when(request('q'), function ($k) {
+            $k->where(function ($q) {
+                $q->where('nama', 'like', '%' . request('q') . '%')
+                    ->orWhere('norm', 'like', '%' . request('q') . '%')
+                    ->orWhere('nomor_asuransi', 'like', '%' . request('q') . '%')
+                    ->orWhere('nama_asuransi', 'like', '%' . request('q') . '%')
+                    ->orWhere('nik', 'like', '%' . request('q') . '%');
+            });
         })
             ->whereNull('hidden')
             ->orderBy($req['order_by'], $req['sort']);
