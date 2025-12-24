@@ -28,12 +28,14 @@ class KunjunganController extends Controller
         ];
         $raw = Kunjungan::query();
         $raw->select('kunjungans.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm');
-        $raw->when(request('q'), function ($q) {
-            $q->where('pasiens.nama', 'like', '%' . request('q') . '%')
-                ->orWhere('pasiens.norm', 'like', '%' . request('q') . '%')
-                ->orWhere('pasiens.nomor_asuransi', 'like', '%' . request('q') . '%')
-                ->orWhere('pasiens.nik', 'like', '%' . request('q') . '%')
-                ->orWhere('kunjungans.noreg', 'like', '%' . request('q') . '%');
+        $raw->when(request('q'), function ($k) {
+            $k->where(function ($q) {
+                $q->where('pasiens.nama', 'like', '%' . request('q') . '%')
+                    ->orWhere('pasiens.norm', 'like', '%' . request('q') . '%')
+                    ->orWhere('pasiens.nomor_asuransi', 'like', '%' . request('q') . '%')
+                    ->orWhere('pasiens.nik', 'like', '%' . request('q') . '%')
+                    ->orWhere('kunjungans.noreg', 'like', '%' . request('q') . '%');
+            })->whereNull('kunjungans.deleted_at');
         })
             ->whereBetween('tgl_mrs', [$req['from'], $req['to']])
             ->orderBy($req['order_by'], $req['sort']);
@@ -138,6 +140,7 @@ class KunjunganController extends Controller
             }
             $result['kunjungan'] = Kunjungan::updateOrCreate(['norm' => $norm, 'noreg' => $noreg], $kunjungan);
             $result['pendamping'] = PenanggungJawabPasien::updateOrCreate(['noreg' => $noreg], $pendamping);
+            $result['message'] = 'Data sudah berhasil disimpan';
 
             DB::commit();
             return new JsonResponse($result);
