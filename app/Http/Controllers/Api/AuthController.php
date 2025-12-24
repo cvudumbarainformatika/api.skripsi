@@ -146,27 +146,30 @@ class AuthController extends Controller
     {
         //
         $user = Auth::user();
-        if ($user->username == 'sa') {
-            // $items = Menu::with('children')->get();
-            $data = User::find($user->id);
-            // $data->items = $items;
-        } else {
-            $data = User::with('akses')->find($user->id);
-            $menuIds = collect($data['akses'])->pluck('menu_id')->unique()->values();
-            $subMenuIds = collect($data['akses'])->pluck('submenu_id')->unique()->values();
-            // $menus = Menu::wherein('id', $menuIds)->get();
-            // $submenus = Submenu::wherein('id', $subMenuIds)->get();
-            $result = [];
-            // foreach ($menus as $key) {
+        // if ($user->username == 'sa') {
+        //     // $items = Menu::with('children')->get();
+        //     $data = User::find($user->id);
+        //     // $data->items = $items;
+        // } else {
+        //     $data = User::with('akses')->find($user->id);
+        //     $menuIds = collect($data['akses'])->pluck('menu_id')->unique()->values();
+        //     $subMenuIds = collect($data['akses'])->pluck('submenu_id')->unique()->values();
+        //     // $menus = Menu::wherein('id', $menuIds)->get();
+        //     // $submenus = Submenu::wherein('id', $subMenuIds)->get();
+        //     $result = [];
+        //     // foreach ($menus as $key) {
 
-            //     $key['children'] = $submenus->where('menu_id', $key->id)->values();
-            //     $result[] = $key;
-            // }
-            // $data->items = $result;
-        }
+        //     //     $key['children'] = $submenus->where('menu_id', $key->id)->values();
+        //     //     $result[] = $key;
+        //     // }
+        //     // $data->items = $result;
+        // }
 
+        // return new JsonResponse([
+        //     'user' => $data
+        // ]);
         return new JsonResponse([
-            'user' => $data
+            'user' => $user
         ]);
     }
 
