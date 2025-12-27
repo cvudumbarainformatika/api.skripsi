@@ -9,6 +9,7 @@ Route::group([
   'prefix' => 'transaksi/kunjungan'
 ], function () {
   Route::get('/get-list', [KunjunganController::class, 'index']);
+  Route::get('/terima-pasien', [KunjunganController::class, 'terima']);
   Route::post('/simpan', [KunjunganController::class, 'store']);
   Route::post('/delete', [KunjunganController::class, 'hapus']);
 });

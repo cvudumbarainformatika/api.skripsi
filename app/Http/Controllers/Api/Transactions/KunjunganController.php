@@ -46,6 +46,20 @@ class KunjunganController extends Controller
         $resp = ResponseHelper::responseGetSimplePaginate($data, $req, $totalCount);
         return new JsonResponse($resp);
     }
+    public function terima()
+    {
+        $data = Kunjungan::find(request('id'));
+        if ($data) {
+            $data->load([
+                'pj',
+                'sertipreop',
+                'pengkajian_pre_anastesi',
+                'laboratorium',
+                'radiologi',
+            ]);
+        }
+        return new JsonResponse($data);
+    }
     public function store(Request $request)
     {
         $noreg = $request->noreg ?? null;
