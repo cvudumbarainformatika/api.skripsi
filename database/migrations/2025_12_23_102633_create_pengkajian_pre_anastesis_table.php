@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('pengkajian_pre_anastesis', function (Blueprint $table) {
             $table->id();
-            $table->bigIncrements('id'); // PK + index default
 
             // Nomor registrasi (1 kunjungan = 1 pengkajian)
             $table->string('noreg')->unique();
