@@ -19,15 +19,8 @@ return new class extends Migration
             $table->string('riwayat_penyakit_lain', 50)->nullable();
             $table->string('jenis_alergi_obat', 50)->nullable();
             $table->string('reaksi_alergi_obat', 50)->nullable();
-            $table->string('surat_persetujuan_operasi', 50)->nullable();
-            $table->string('surat_persetujuan_anastesi', 50)->nullable();
+            $table->string('persiapan_operasi', 255)->nullable();
             $table->string('mulai_puasa', 50)->nullable();
-            $table->string('pengosongan_kandung_kemih', 50)->nullable();
-            $table->string('gigi_palsu', 50)->nullable();
-            $table->string('perhisan', 50)->nullable();
-            $table->string('kosmetik', 50)->nullable();
-            $table->string('cukur_daerah_operasi', 50)->nullable();
-            $table->string('penandaan', 50)->nullable();
             $table->string('hasil_pemeriksaan')->nullable();
             $table->string('alat_kesehatan', 50)->nullable();
             $table->string('alat_kesehatan_lainnya', 50)->nullable();
