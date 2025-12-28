@@ -56,6 +56,7 @@ class KunjunganController extends Controller
                 'pengkajian_pre_anastesi',
                 'laboratorium',
                 'radiologi',
+                'assasement_pra_anastesi',
             ]);
         }
         return new JsonResponse($data);

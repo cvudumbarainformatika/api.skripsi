@@ -36,6 +36,7 @@ class LaboratoriumController extends Controller
             ],
             [
                 'noreg.required' => 'Nomor Registrasi Harus di isi ',
+                'norm.required' => 'Nomor Rekam Medis Harus di isi ',
             ]
         );
         try {

@@ -34,4 +34,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(Radiologi::class, 'noreg', 'noreg');
     }
+    public function assasement_pra_anastesi()
+    {
+        return $this->belongsTo(AssasementPraAnastesi::class, 'noreg', 'noreg');
+    }
 }
