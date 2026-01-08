@@ -38,4 +38,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(AssasementPraAnastesi::class, 'noreg', 'noreg');
     }
+    public function asessement_pra_induksi()
+    {
+        return $this->belongsTo(AsessementPraInduksi::class, 'noreg', 'noreg');
+    }
 }
