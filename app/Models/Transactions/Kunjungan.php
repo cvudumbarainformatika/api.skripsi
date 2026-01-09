@@ -42,4 +42,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(AsessementPraInduksi::class, 'noreg', 'noreg');
     }
+    public function check_list_keselamatan_operasi()
+    {
+        return $this->belongsTo(CheckListKeselamatanOperasi::class, 'noreg', 'noreg');
+    }
 }

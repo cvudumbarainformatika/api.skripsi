@@ -57,6 +57,8 @@ class KunjunganController extends Controller
                 'laboratorium',
                 'radiologi',
                 'assasement_pra_anastesi',
+                'asessement_pra_induksi',
+                'check_list_keselamatan_operasi',
             ]);
         }
         return new JsonResponse($data);
