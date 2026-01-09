@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('askan_pra_anastesis', function (Blueprint $table) {
+        Schema::create('askan_anastesis', function (Blueprint $table) {
             $table->id();
             $table->string('noreg')->unique();
-            $table->text('asuhan_pra_anestesi')->nullable();
+            $table->string('fase');
+            $table->text('askan_data')->nullable();
             $table->timestamps();
+
+            $table->unique(['noreg', 'fase']);
         });
     }
 
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('askan_pra_anastesis');
+        Schema::dropIfExists('askan_anastesis');
     }
 };

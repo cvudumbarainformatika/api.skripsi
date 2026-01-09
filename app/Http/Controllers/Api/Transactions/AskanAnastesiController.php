@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\Transactions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transactions\AskanPraAnastesi;
+use App\Models\Transactions\AskanAnastesi;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AskanPraAnastesiController extends Controller
+class AskanAnastesiController extends Controller
 {
     /**
      * ================= VALIDATOR =================
@@ -19,26 +19,26 @@ class AskanPraAnastesiController extends Controller
             [
                 'noreg' => 'required|string',
 
-                'asuhan_pra_anestesi' => 'nullable|array',
+                'askan_data' => 'nullable|array',
 
-                'asuhan_pra_anestesi.*.data' => 'nullable|string',
-                'asuhan_pra_anestesi.*.masalah_kesehatan_anestesi' => 'nullable|string',
-                'asuhan_pra_anestesi.*.waktu' => 'nullable|string',
-                'asuhan_pra_anestesi.*.intervensi' => 'nullable|string',
-                'asuhan_pra_anestesi.*.implementasi' => 'nullable|string',
+                'askan_data.*.data' => 'nullable|string',
+                'askan_data.*.masalah_kesehatan_anestesi' => 'nullable|string',
+                'askan_data.*.waktu' => 'nullable|string',
+                'askan_data.*.intervensi' => 'nullable|string',
+                'askan_data.*.implementasi' => 'nullable|string',
 
-                'asuhan_pra_anestesi.*.evaluasi' => 'nullable|array',
-                'asuhan_pra_anestesi.*.evaluasi.s' => 'nullable|string',
-                'asuhan_pra_anestesi.*.evaluasi.o' => 'nullable|string',
-                'asuhan_pra_anestesi.*.evaluasi.a' => 'nullable|string',
-                'asuhan_pra_anestesi.*.evaluasi.p' => 'nullable|string',
+                'askan_data.*.evaluasi' => 'nullable|array',
+                'askan_data.*.evaluasi.s' => 'nullable|string',
+                'askan_data.*.evaluasi.o' => 'nullable|string',
+                'askan_data.*.evaluasi.a' => 'nullable|string',
+                'askan_data.*.evaluasi.p' => 'nullable|string',
 
-                'asuhan_pra_anestesi.*.nama_ttd' => 'nullable|string',
+                'askan_data.*.nama_ttd' => 'nullable|string',
             ],
             [
                 'noreg.required' => 'No registrasi wajib diisi.',
                 'noreg.string' => 'No registrasi harus berupa teks.',
-                'asuhan_pra_anestesi.array' => 'Data asuhan pra anestesi harus berupa array.',
+                'askan_data.array' => 'Data asuhan pra anestesi harus berupa array.',
             ]
         );
     }
@@ -53,9 +53,12 @@ class AskanPraAnastesiController extends Controller
         try {
             $data = $this->validateRequest($request);
 
-            $result = AskanPraAnastesi::updateOrCreate(
-                ['noreg' => $data['noreg']],
-                ['asuhan_pra_anestesi' => $data['asuhan_pra_anestesi'] ?? null]
+            $result = AskanAnastesi::updateOrCreate(
+                [
+                    'noreg' => $data['noreg'],
+                    'fase'  => $data['fase'],
+                ],
+                ['askan_data' => $data['askan_data'] ?? null]
             );
 
             DB::commit();
@@ -83,11 +86,20 @@ class AskanPraAnastesiController extends Controller
     {
         try {
             $request->validate(
-                ['noreg' => 'required|string'],
-                ['noreg.required' => 'No registrasi wajib diisi.']
+                [
+                    'noreg' => 'required|string',
+                    'fase'  => 'required|string',
+                ],
+                [
+                    'noreg.required' => 'No registrasi wajib diisi.',
+                    'fase.required' => 'Fase wajib diisi.',
+                ]
             );
 
-            $data = AskanPraAnastesi::where('noreg', $request->noreg)->first();
+            $data = AskanAnastesi::where('noreg', $request->noreg)
+                ->where('fase', $request->fase)
+                ->first();
+
 
             if (!$data) {
                 return response()->json([
