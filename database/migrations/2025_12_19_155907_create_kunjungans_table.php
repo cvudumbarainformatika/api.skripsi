@@ -21,6 +21,11 @@ return new class extends Migration
             $table->text('diagnosa')->nullable();
             $table->text('rencana_tindakan')->nullable();
             $table->string('ruang_ranap')->nullable();
+            $table->string('ruang_tindakan')->nullable(); // new
+            $table->string('tindakan_operasi')->nullable(); // new
+            $table->string('dokter_operator')->nullable(); // new
+            $table->string('dokter_anastesi')->nullable(); // new
+            $table->string('penata_anastesi')->nullable(); // new
             $table->string('kelas')->nullable();
             $table->string('cara_masuk')->nullable();
             $table->string('pintu_masuk')->nullable();

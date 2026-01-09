@@ -59,6 +59,7 @@ class KunjunganController extends Controller
                 'assasement_pra_anastesi',
                 'asessement_pra_induksi',
                 'check_list_keselamatan_operasi',
+                'askan_anastesi',
             ]);
         }
         return new JsonResponse($data);
@@ -118,6 +119,11 @@ class KunjunganController extends Controller
                 'kunjungan.pintu_masuk' => 'nullable',
                 'kunjungan.alergi' => 'nullable',
                 'kunjungan.rs' => 'nullable',
+                'kunjungan.ruang_tindakan' => 'nullable',
+                'kunjungan.tindakan_operasi' => 'nullable',
+                'kunjungan.dokter_operator' => 'nullable',
+                'kunjungan.dokter_anastesi' => 'nullable',
+                'kunjungan.penata_anastesi' => 'nullable',
 
                 'pendamping.nama' => 'required',
                 'pendamping.tgl_lahir' => 'nullable',

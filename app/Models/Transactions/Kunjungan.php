@@ -46,4 +46,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(CheckListKeselamatanOperasi::class, 'noreg', 'noreg');
     }
+    public function askan_anastesi()
+    {
+        return $this->belongsTo(AskanAnastesi::class, 'noreg', 'noreg');
+    }
 }
