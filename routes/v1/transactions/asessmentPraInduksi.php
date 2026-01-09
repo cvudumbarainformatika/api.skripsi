@@ -9,6 +9,5 @@ Route::group([
   'prefix' => 'transaksi/asessement-pra-induksi'
 ], function () {
   Route::post('/simpan', [AsessementPraInduksiController::class, 'simpan']);
-  Route::post('/update', [AsessementPraInduksiController::class, 'update']);
   Route::post('/delete', [AsessementPraInduksiController::class, 'hapus']);
 });

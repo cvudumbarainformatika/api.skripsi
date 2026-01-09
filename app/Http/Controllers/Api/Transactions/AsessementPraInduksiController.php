@@ -21,7 +21,7 @@ class AsessementPraInduksiController extends Controller
         try {
             $validated = $this->validateRequest($request);
 
-            $data = AsessementPraInduksi::create($validated);
+            $data = AsessementPraInduksi::updateOrCreate(['noreg' => $validated['noreg']], $validated);
 
             DB::commit();
 
@@ -42,7 +42,7 @@ class AsessementPraInduksiController extends Controller
         }
     }
     /**
-     * Update
+     * Update ga digawe
      */
     public function update(Request $request, $id)
     {
