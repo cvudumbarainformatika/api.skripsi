@@ -14,10 +14,10 @@ class LaporanAnastesiController extends Controller
     /**
      * ================= VALIDATOR =================
      */
-    protected function validator(array $data)
+    protected function validator(Request $request)
     {
-        return Validator::make(
-            $data,
+        return $request->valdate(
+
             $this->rules(),
             $this->messages()
         );
@@ -77,19 +77,12 @@ class LaporanAnastesiController extends Controller
         DB::beginTransaction();
 
         try {
-            $validator = $this->validator($request->all());
+            $validated = $this->validator($request);
 
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Validasi gagal.',
-                    'errors' => $validator->errors(),
-                ], 422);
-            }
 
             $data = LaporanAnastesi::updateOrCreate(
-                ['noreg' => $request->noreg],
-                $request->except('noreg')
+                ['noreg' => $validated->noreg],
+                $validated->except('noreg')
             );
 
             DB::commit();
@@ -116,21 +109,12 @@ class LaporanAnastesiController extends Controller
     public function hapus(Request $request)
     {
         try {
-            $validator = Validator::make(
-                $request->all(),
+            $validated =  $request->validate(
                 ['noreg' => 'required|string'],
                 ['noreg.required' => 'No registrasi wajib diisi.']
             );
 
-            if ($validator->fails()) {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Validasi gagal.',
-                    'errors' => $validator->errors(),
-                ], 422);
-            }
-
-            $data = LaporanAnastesi::where('noreg', $request->noreg)->first();
+            $data = LaporanAnastesi::where('noreg', $validated['noreg'])->first();
 
             if (!$data) {
                 return response()->json([
