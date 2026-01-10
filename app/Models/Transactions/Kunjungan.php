@@ -58,4 +58,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(ScorePascaAnastesi::class, 'noreg', 'noreg');
     }
+    public function pemantauan_pasca_anastesi()
+    {
+        return $this->belongsTo(PemantauanPascaAnastesi::class, 'noreg', 'noreg');
+    }
 }
