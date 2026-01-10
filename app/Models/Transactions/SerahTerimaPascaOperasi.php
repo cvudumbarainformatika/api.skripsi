@@ -6,7 +6,7 @@ use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SerahTerimaOkRr extends Model
+class SerahTerimaPascaOperasi extends Model
 {
     use HasFactory, LogsActivity;
 

@@ -50,8 +50,12 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(AskanAnastesi::class, 'noreg', 'noreg');
     }
-    public function serah_terima_ok_rr()
+    public function serah_terima_pasca_op()
     {
-        return $this->belongsTo(SerahTerimaOkRr::class, 'noreg', 'noreg');
+        return $this->belongsTo(SerahTerimaPascaOperasi::class, 'noreg', 'noreg');
+    }
+    public function score_pasca_anastesi()
+    {
+        return $this->belongsTo(ScorePascaAnastesi::class, 'noreg', 'noreg');
     }
 }

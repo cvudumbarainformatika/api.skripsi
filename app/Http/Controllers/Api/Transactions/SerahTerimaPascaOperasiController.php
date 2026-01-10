@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Api\Transactions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transactions\SerahTerimaOkRr;
+use App\Models\Transactions\SerahTerimaPascaOperasi;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class SerahTerimaOkRrController extends Controller
+class SerahTerimaPascaOperasiController extends Controller
 {
     /**
      * ================= VALIDATOR =================
@@ -17,6 +17,7 @@ class SerahTerimaOkRrController extends Controller
     {
         return [
             'noreg' => 'required|string',
+            'tujuan' => 'required|string',
 
             'situation' => 'nullable|string',
             'background' => 'nullable|string',
@@ -33,6 +34,8 @@ class SerahTerimaOkRrController extends Controller
         return [
             'noreg.required' => 'No registrasi wajib diisi.',
             'noreg.string'   => 'No registrasi harus berupa teks.',
+            'tujuan.required' => 'Tujuan wajib diisi.',
+            'tujuan.string'   => 'Tujuan harus berupa teks.',
         ];
     }
 
@@ -54,8 +57,8 @@ class SerahTerimaOkRrController extends Controller
         try {
             $data = $this->validateRequest($request);
 
-            $result = SerahTerimaOkRr::updateOrCreate(
-                ['noreg' => $data['noreg']],
+            $result = SerahTerimaPascaOperasi::updateOrCreate(
+                ['noreg' => $data['noreg'], 'tujuan' => $data['tujuan']],
                 collect($data)->except('noreg')->toArray()
             );
 
@@ -83,11 +86,11 @@ class SerahTerimaOkRrController extends Controller
     public function hapus(Request $request)
     {
         $request->validate(
-            ['noreg' => 'required|string'],
-            ['noreg.required' => 'No registrasi wajib diisi.']
+            ['id' => 'required'],
+            ['id.required' => 'id tidak ada']
         );
 
-        $data = SerahTerimaOkRr::where('noreg', $request->noreg)->first();
+        $data = SerahTerimaPascaOperasi::find($request->id);
 
         if (!$data) {
             return response()->json([

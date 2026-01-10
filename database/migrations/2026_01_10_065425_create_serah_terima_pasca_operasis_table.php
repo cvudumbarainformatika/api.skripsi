@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('serah_terima_ok_rrs', function (Blueprint $table) {
+        Schema::create('serah_terima_pasca_opeasis', function (Blueprint $table) {
             $table->id();
             $table->string('noreg')->unique();
+            $table->string('tujuan')->unique();
 
             // SBAR
             $table->text('situation')->nullable();
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('serah_terima_ok_rrs');
+        Schema::dropIfExists('serah_terima_pasca_opeasis');
     }
 };
