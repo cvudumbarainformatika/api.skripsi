@@ -60,6 +60,7 @@ class KunjunganController extends Controller
                 'asessement_pra_induksi',
                 'check_list_keselamatan_operasi',
                 'askan_anastesi',
+                'serah_terima_ok_rr',
             ]);
         }
         return new JsonResponse($data);
