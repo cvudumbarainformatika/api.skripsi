@@ -63,6 +63,7 @@ class KunjunganController extends Controller
                 'serah_terima_pasca_op',
                 'score_pasca_anastesi',
                 'pemantauan_pasca_anastesi',
+                'pemakaian_obat_alkes',
             ]);
         }
         return new JsonResponse($data);
