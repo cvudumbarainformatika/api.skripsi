@@ -17,23 +17,29 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $sa = User::where('username', '=', 'sa')->first();
-        if (!$sa) {
-            User::create([
-                'kode' => 'USR000000',
-                'username' => 'sa',
-                'nama' => 'Super Admin',
-                'password' => bcrypt('sasa0102'),
-                'email' => 'sa@app.com',
-                'kode_jabatan' => 'root',
-            ],[
+
+        User::firstOrCreate([
+            'kode' => 'USR000000',
+            'username' => 'sa',
+        ], [
+            'nama' => 'Super Admin',
+            'password' => bcrypt('sasa0102'),
+            'email' => 'sa@app.com',
+            'kode_jabatan' => 'root',
+        ]);
+        User::firstOrCreate(
+            [
                 'kode' => 'USR000001',
                 'username' => 'admin',
+            ],
+            [
                 'nama' => 'Admin',
                 'password' => bcrypt('admin123'),
                 'email' => 'admin@app.com',
                 'kode_jabatan' => 'admin',
-            ]);
-        }
+            ]
+        );
+
         // User::factory(5)->create();
         // \App\Models\User::factory(10)->create();
 
