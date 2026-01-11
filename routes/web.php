@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\Transactions\LaboratoriumController;
+use App\Http\Controllers\Api\Transactions\RadiologiController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,7 @@ Route::get('/autogen', function () {
     $user = User::limit(10)->get();
     return $user;
 });
+Route::get('/radiologi/{id}/dokumen', [RadiologiController::class, 'dokumen'])
+    ->name('radiologi.dokumen');
+Route::get('/laborat/{id}/dokumen', [LaboratoriumController::class, 'dokumen'])
+    ->name('laborat.dokumen');

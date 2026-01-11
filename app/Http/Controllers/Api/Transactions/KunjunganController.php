@@ -46,6 +46,28 @@ class KunjunganController extends Controller
         $resp = ResponseHelper::responseGetSimplePaginate($data, $req, $totalCount);
         return new JsonResponse($resp);
     }
+    public function terima()
+    {
+        $data = Kunjungan::find(request('id'));
+        if ($data) {
+            $data->load([
+                'pj',
+                'sertipreop',
+                'pengkajian_pre_anastesi',
+                'laboratorium',
+                'radiologi',
+                'assasement_pra_anastesi',
+                'asessement_pra_induksi',
+                'check_list_keselamatan_operasi',
+                'askan_anastesi',
+                'serah_terima_pasca_op',
+                'score_pasca_anastesi',
+                'pemantauan_pasca_anastesi',
+                'pemakaian_obat_alkes',
+            ]);
+        }
+        return new JsonResponse($data);
+    }
     public function store(Request $request)
     {
         $noreg = $request->noreg ?? null;
@@ -101,6 +123,11 @@ class KunjunganController extends Controller
                 'kunjungan.pintu_masuk' => 'nullable',
                 'kunjungan.alergi' => 'nullable',
                 'kunjungan.rs' => 'nullable',
+                'kunjungan.ruang_tindakan' => 'nullable',
+                'kunjungan.tindakan_operasi' => 'nullable',
+                'kunjungan.dokter_operator' => 'nullable',
+                'kunjungan.dokter_anastesi' => 'nullable',
+                'kunjungan.penata_anastesi' => 'nullable',
 
                 'pendamping.nama' => 'required',
                 'pendamping.tgl_lahir' => 'nullable',

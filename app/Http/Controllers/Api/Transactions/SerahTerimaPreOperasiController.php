@@ -17,24 +17,18 @@ class SerahTerimaPreOperasiController extends Controller
         $validatedData = $request->validate(
             [
                 'noreg' => 'required',
-                'kesadaran' => 'nullable',
-                'riwayat_penyakit' => 'nullable',
+                'kesadaran' => 'nullable|array',
+                'riwayat_penyakit' => 'nullable|array',
                 'riwayat_penyakit_lain' => 'nullable',
+                'riwayat_alergi_obat' => 'nullable',
                 'jenis_alergi_obat' => 'nullable',
                 'reaksi_alergi_obat' => 'nullable',
-                'surat_persetujuan_operasi' => 'nullable',
-                'surat_persetujuan_anastesi' => 'nullable',
+                'persiapan_operasi' => 'nullable|array',
                 'mulai_puasa' => 'nullable',
-                'pengosongan_kandung_kemih' => 'nullable',
-                'gigi_palsu' => 'nullable',
-                'perhisan' => 'nullable',
-                'kosmetik' => 'nullable',
-                'cukur_daerah_operasi' => 'nullable',
-                'penandaan' => 'nullable',
                 'hasil_pemeriksaan' => 'nullable',
-                'alat_kesehatan' => 'nullable',
+                'alat_kesehatan' => 'nullable|array',
                 'alat_kesehatan_lainnya' => 'nullable',
-                'jenis_darah' => 'nullable',
+                'jenis_darah' => 'nullable|array',
                 'jumlah_darah' => 'nullable',
                 'vital_td' => 'nullable',
                 'vital_n' => 'nullable',
@@ -43,6 +37,11 @@ class SerahTerimaPreOperasiController extends Controller
             ],
             [
                 'noreg.required' => 'Nomor Registrasi Pasien harus ada',
+                'kesadaran.array' => 'Kesadaran bukan array, hubungi tim IT untuk perbaikan',
+                'riwayat_penyakit.array' => 'Riwayat Penyakit bukan array, hubungi tim IT untuk perbaikan',
+                'persiapan_operasi.array' => 'Persiapan Oerasi bukan array, hubungi tim IT untuk perbaikan',
+                'alat_kesehatan.array' => 'Alat Kesehatan bukan array, hubungi tim IT untuk perbaikan',
+                'jenis_darah.array' => 'Jenis Darah bukan array, hubungi tim IT untuk perbaikan',
             ]
         );
         try {

@@ -6,21 +6,21 @@ use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SerahTerimaPreOperasi extends Model
+class Laboratorium extends Model
 {
     use HasFactory, LogsActivity;
+
     protected $guarded = ['id'];
     protected $hidden = ['updated_at', 'created_at'];
+    protected $appends = ['dokumen_url'];
     protected $casts = [
-        'kesadaran' => 'array',
-        'riwayat_alergi_obat' => 'array',
-        'persiapan_operasi' => 'array',
-        'alat_kesehatan' => 'array',
-        'jenis_darah' => 'array',
+        'lainnya' => 'array',
     ];
 
-    public function kunjungan()
+    public function getDokumenUrlAttribute()
     {
-        return $this->belongsTo(Kunjungan::class, 'noreg', 'noreg');
+        if (!$this->path) return null;
+
+        return route('laborat.dokumen', $this->id);
     }
 }

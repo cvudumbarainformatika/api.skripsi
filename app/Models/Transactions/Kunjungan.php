@@ -26,4 +26,44 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(PengkajianPreAnastesi::class, 'noreg', 'noreg');
     }
+    public function laboratorium()
+    {
+        return $this->belongsTo(Laboratorium::class, 'noreg', 'noreg');
+    }
+    public function radiologi()
+    {
+        return $this->belongsTo(Radiologi::class, 'noreg', 'noreg');
+    }
+    public function assasement_pra_anastesi()
+    {
+        return $this->belongsTo(AssasementPraAnastesi::class, 'noreg', 'noreg');
+    }
+    public function asessement_pra_induksi()
+    {
+        return $this->belongsTo(AsessementPraInduksi::class, 'noreg', 'noreg');
+    }
+    public function check_list_keselamatan_operasi()
+    {
+        return $this->belongsTo(CheckListKeselamatanOperasi::class, 'noreg', 'noreg');
+    }
+    public function askan_anastesi()
+    {
+        return $this->belongsTo(AskanAnastesi::class, 'noreg', 'noreg');
+    }
+    public function serah_terima_pasca_op()
+    {
+        return $this->belongsTo(SerahTerimaPascaOperasi::class, 'noreg', 'noreg');
+    }
+    public function score_pasca_anastesi()
+    {
+        return $this->belongsTo(ScorePascaAnastesi::class, 'noreg', 'noreg');
+    }
+    public function pemantauan_pasca_anastesi()
+    {
+        return $this->belongsTo(PemantauanPascaAnastesi::class, 'noreg', 'noreg');
+    }
+    public function pemakaian_obat_alkes()
+    {
+        return $this->belongsTo(PemakaianObatAlkes::class, 'noreg', 'noreg');
+    }
 }
