@@ -48,11 +48,11 @@ class Kunjungan extends Model
     }
     public function askan_anastesi()
     {
-        return $this->belongsTo(AskanAnastesi::class, 'noreg', 'noreg');
+        return $this->hasMany(AskanAnastesi::class, 'noreg', 'noreg');
     }
     public function serah_terima_pasca_op()
     {
-        return $this->belongsTo(SerahTerimaPascaOperasi::class, 'noreg', 'noreg');
+        return $this->hasMany(SerahTerimaPascaOperasi::class, 'noreg', 'noreg');
     }
     public function score_pasca_anastesi()
     {

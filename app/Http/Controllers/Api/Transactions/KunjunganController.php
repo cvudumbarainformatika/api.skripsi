@@ -67,25 +67,25 @@ class KunjunganController extends Controller
         //         'pemakaian_obat_alkes',
         //     ]);
         // }
-        $data = Kunjungan::with([
-            'pj',
-            'sertipreop',
-            'pengkajian_pre_anastesi',
-            'laboratorium',
-            'radiologi',
-            'assasement_pra_anastesi',
-            'asessement_pra_induksi',
-            'check_list_keselamatan_operasi',
-            'askan_anastesi',
-            'serah_terima_pasca_op',
-            'score_pasca_anastesi',
-            'pemantauan_pasca_anastesi',
-            'pemakaian_obat_alkes',
-        ])
-            ->where(function ($q) {
-                $q->where('id', request('id'))
-                    ->orWhere('noreg', request('noreg'));
-            })
+        $data = Kunjungan::where(function ($q) {
+            $q->where('id', request('id'))
+                ->orWhere('noreg', request('noreg'));
+        })
+            ->with([
+                'pj',
+                'sertipreop',
+                'pengkajian_pre_anastesi',
+                'laboratorium',
+                'radiologi',
+                'assasement_pra_anastesi',
+                'asessement_pra_induksi',
+                'check_list_keselamatan_operasi',
+                'askan_anastesi',
+                'serah_terima_pasca_op',
+                // 'score_pasca_anastesi',
+                // 'pemantauan_pasca_anastesi',
+                // 'pemakaian_obat_alkes',
+            ])
             ->first();
         return new JsonResponse($data);
     }
