@@ -101,7 +101,7 @@ class LaboratoriumController extends Controller
                 'message' => 'Gagal Hapus Data Laboratorium. Data tidak ditemukan'
             ], 410);
         }
-        Storage::disk('sftp_storage')->delete($data->path);
+        if ($data->path) Storage::disk('sftp_storage')->delete($data->path);
         $data->delete();
         return new JsonResponse([
             'message' => 'Data Data Laboratorium sudah dihapus'

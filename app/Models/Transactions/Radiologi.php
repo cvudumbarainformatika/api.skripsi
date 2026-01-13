@@ -5,6 +5,7 @@ namespace App\Models\Transactions;
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Radiologi extends Model
 {
@@ -18,6 +19,8 @@ class Radiologi extends Model
     {
         if (!$this->path) return null;
 
-        return route('radiologi.dokumen', $this->id);
+        // return route('radiologi.dokumen', $this->id);
+
+        return URL::signedRoute('radiologi.dokumen', ['id' => $this->id]);
     }
 }

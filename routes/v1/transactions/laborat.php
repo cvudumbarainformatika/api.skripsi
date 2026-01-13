@@ -11,6 +11,9 @@ Route::group([
   Route::post('/simpan', [LaboratoriumController::class, 'simpan']);
   Route::post('/delete', [LaboratoriumController::class, 'hapus']);
 
-  Route::get('/dokumen', [LaboratoriumController::class, 'dokumen'])
+  // Route::get('/dokumen', [LaboratoriumController::class, 'dokumen'])
+  //   ->name('laborat.dokumen');
+  Route::get('/dokumen/{id}', [LaboratoriumController::class, 'dokumen'])
+    ->middleware('signed')   // ini ditaruh di sini
     ->name('laborat.dokumen');
 });

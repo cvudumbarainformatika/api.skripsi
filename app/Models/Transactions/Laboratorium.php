@@ -5,6 +5,7 @@ namespace App\Models\Transactions;
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class Laboratorium extends Model
 {
@@ -21,6 +22,7 @@ class Laboratorium extends Model
     {
         if (!$this->path) return null;
 
-        return route('laborat.dokumen', $this->id);
+        // return route('laborat.dokumen', $this->id);
+        return URL::signedRoute('laborat.dokumen', ['id' => $this->id]);
     }
 }

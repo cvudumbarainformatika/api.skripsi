@@ -11,6 +11,10 @@ Route::group([
   Route::post('/simpan', [RadiologiController::class, 'simpan']);
   Route::post('/delete', [RadiologiController::class, 'hapus']);
 
-  Route::get('/dokumen', [RadiologiController::class, 'dokumen'])
+  // Route::get('/dokumen', [RadiologiController::class, 'dokumen'])
+  //   ->name('radiologi.dokumen');
+
+  Route::get('/dokumen/{id}', [RadiologiController::class, 'dokumen'])
+    ->middleware('signed')   // ini ditaruh di sini
     ->name('radiologi.dokumen');
 });
