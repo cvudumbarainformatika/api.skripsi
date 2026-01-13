@@ -38,6 +38,7 @@ return new class extends Migration
             $table->string('nama_penyakit')->nullable();
             $table->string('alergi')->nullable();
             $table->string('nama_alergi')->nullable();
+            $table->string('gigi_palsu')->nullable();
             $table->string('lensa_kontak')->nullable();
             $table->string('obat_sebelum')->nullable();
             $table->string('nama_obat_sebelum')->nullable();

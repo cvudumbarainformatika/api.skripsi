@@ -135,6 +135,7 @@ class AsessementPraInduksiController extends Controller
                 'nama_penyakit' => 'nullable|string',
                 'alergi' => 'nullable|string',
                 'nama_alergi' => 'nullable|string',
+                'gigi_palsu' => 'nullable|string',
 
                 'lensa_kontak' => 'nullable|string',
                 'obat_sebelum' => 'nullable|string',
