@@ -23,7 +23,7 @@ Route::get('/autogen', function () {
     $user = User::limit(10)->get();
     return $user;
 });
-Route::get('/radiologi/{id}/dokumen', [RadiologiController::class, 'dokumen'])
-    ->name('radiologi.dokumen');
-Route::get('/laborat/{id}/dokumen', [LaboratoriumController::class, 'dokumen'])
-    ->name('laborat.dokumen');
+// Route::get('/radiologi/{id}/dokumen', [RadiologiController::class, 'dokumen'])
+//     ->name('radiologi.dokumen');
+// Route::get('/laborat/{id}/dokumen', [LaboratoriumController::class, 'dokumen'])
+//     ->name('laborat.dokumen');
