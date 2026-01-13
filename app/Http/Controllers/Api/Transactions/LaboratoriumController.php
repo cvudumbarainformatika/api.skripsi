@@ -69,7 +69,7 @@ class LaboratoriumController extends Controller
                 'path' => $path ?? null,
             ]);
             DB::commit();
-            $data = $request->append('dokumen_url');
+            $data = $result->append('dokumen_url');
             return new JsonResponse($data);
         } catch (\Throwable $e) {
             DB::rollBack();
