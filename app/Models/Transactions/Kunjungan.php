@@ -2,6 +2,7 @@
 
 namespace App\Models\Transactions;
 
+use App\Models\Master\Dokter;
 use App\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -14,6 +15,14 @@ class Kunjungan extends Model
     protected $guarded = ['id'];
     protected $hidden = ['updated_at', 'created_at'];
 
+    public function dr_anastesi()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_anastesi', 'kode');
+    }
+    public function dr_operator()
+    {
+        return $this->belongsTo(Dokter::class, 'dokter_operator', 'kode');
+    }
     public function pj()
     {
         return $this->belongsTo(PenanggungJawabPasien::class, 'noreg', 'noreg');

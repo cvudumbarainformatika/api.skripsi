@@ -72,6 +72,8 @@ class KunjunganController extends Controller
                 ->orWhere('noreg', request('noreg'));
         })
             ->with([
+                'dr_anastesi',
+                'dr_operator',
                 'pj',
                 'sertipreop',
                 'pengkajian_pre_anastesi',
@@ -82,9 +84,9 @@ class KunjunganController extends Controller
                 'check_list_keselamatan_operasi',
                 'askan_anastesi',
                 'serah_terima_pasca_op',
-                // 'score_pasca_anastesi',
-                // 'pemantauan_pasca_anastesi',
-                // 'pemakaian_obat_alkes',
+                'score_pasca_anastesi',
+                'pemantauan_pasca_anastesi',
+                'pemakaian_obat_alkes',
             ])
             ->first();
         return new JsonResponse($data);

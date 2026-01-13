@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('serah_terima_pasca_opeasis', function (Blueprint $table) {
+        Schema::create('serah_terima_pasca_operasis', function (Blueprint $table) {
             $table->id();
             $table->string('noreg')->unique();
             $table->string('tujuan')->unique();
