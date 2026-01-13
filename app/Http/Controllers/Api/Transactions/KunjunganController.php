@@ -48,25 +48,45 @@ class KunjunganController extends Controller
     }
     public function terima()
     {
-        $data = Kunjungan::find(request('id'));
-        if (!$data) return new JsonResponse(['message' => 'Data paseian tidak ditemukan']);
-        if ($data) {
-            $data->load([
-                'pj',
-                'sertipreop',
-                'pengkajian_pre_anastesi',
-                'laboratorium',
-                'radiologi',
-                'assasement_pra_anastesi',
-                'asessement_pra_induksi',
-                'check_list_keselamatan_operasi',
-                'askan_anastesi',
-                'serah_terima_pasca_op',
-                'score_pasca_anastesi',
-                'pemantauan_pasca_anastesi',
-                'pemakaian_obat_alkes',
-            ]);
-        }
+        // $data = Kunjungan::find(request('id'));
+        // if (!$data) return new JsonResponse(['message' => 'Data paseian tidak ditemukan']);
+        // if ($data) {
+        //     $data->load([
+        //         'pj',
+        //         'sertipreop',
+        //         'pengkajian_pre_anastesi',
+        //         'laboratorium',
+        //         'radiologi',
+        //         'assasement_pra_anastesi',
+        //         'asessement_pra_induksi',
+        //         'check_list_keselamatan_operasi',
+        //         'askan_anastesi',
+        //         'serah_terima_pasca_op',
+        //         'score_pasca_anastesi',
+        //         'pemantauan_pasca_anastesi',
+        //         'pemakaian_obat_alkes',
+        //     ]);
+        // }
+        $data = Kunjungan::with([
+            'pj',
+            'sertipreop',
+            'pengkajian_pre_anastesi',
+            'laboratorium',
+            'radiologi',
+            'assasement_pra_anastesi',
+            'asessement_pra_induksi',
+            'check_list_keselamatan_operasi',
+            'askan_anastesi',
+            'serah_terima_pasca_op',
+            'score_pasca_anastesi',
+            'pemantauan_pasca_anastesi',
+            'pemakaian_obat_alkes',
+        ])
+            ->where(function ($q) {
+                $q->where('id', request('id'))
+                    ->orWhere('noreg', request('noreg'));
+            })
+            ->first();
         return new JsonResponse($data);
     }
     public function store(Request $request)
