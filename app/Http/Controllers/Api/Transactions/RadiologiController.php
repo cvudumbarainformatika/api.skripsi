@@ -113,6 +113,9 @@ class RadiologiController extends Controller
         if (!Storage::disk('sftp_storage')->exists($path)) {
             abort(404, 'File tidak ditemukan');
         }
-        return Storage::disk('sftp_storage')->response($path);
+        // return Storage::disk('sftp_storage')->response($path);
+        $fullPath = Storage::disk('sftp_storage')->path($path);
+
+        return response()->file($fullPath);
     }
 }
