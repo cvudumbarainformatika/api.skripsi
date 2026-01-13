@@ -89,6 +89,8 @@ class KunjunganController extends Controller
                 'pemakaian_obat_alkes',
             ])
             ->first();
+        if ($data->laboratorium) $data->laboratorium->append('dokumen_url');
+        if ($data->radiologi) $data->radiologi->append('dokumen_url');
         return new JsonResponse($data);
     }
     public function store(Request $request)
