@@ -123,13 +123,13 @@ class AsessementPraInduksiController extends Controller
                 'ga_array' => 'nullable|array',
 
                 'ra' => 'nullable|string',
-                'ra_array' => 'nullable|array',
+                'ra_array' => 'nullable|string',
 
                 'obat_anastesi' => 'nullable|string',
-                'obat_anastesi_array' => 'nullable|array',
+                'obat_anastesi_array' => 'nullable|string',
 
                 'obat_emergensi' => 'nullable|string',
-                'obat_emergensi_array' => 'nullable|array',
+                'obat_emergensi_array' => 'nullable|string',
 
                 'penyakit' => 'nullable|string',
                 'nama_penyakit' => 'nullable|string',

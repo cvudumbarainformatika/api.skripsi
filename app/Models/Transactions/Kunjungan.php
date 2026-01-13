@@ -42,7 +42,7 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(PengkajianPreAnastesi::class, 'noreg', 'noreg');
     }
-    public function laboratorium()
+    public function     ()
     {
         return $this->belongsTo(Laboratorium::class, 'noreg', 'noreg');
     }
