@@ -19,6 +19,6 @@ Route::group([
   //   ->name('radiologi.dokumen');
 });
 // Yang khusus file (tanpa auth, pakai signed)
-Route::get('transaksi/penunjang-radiologi/dokumen/{id}', [RadiologiController::class, 'dokumen'])
-  ->middleware('signed')
-  ->name('radiologi.dokumen');
+// Route::get('transaksi/penunjang-radiologi/dokumen/{id}', [RadiologiController::class, 'dokumen'])
+//   ->middleware('signed')
+//   ->name('radiologi.dokumen');

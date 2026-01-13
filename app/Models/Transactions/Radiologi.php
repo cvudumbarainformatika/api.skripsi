@@ -19,8 +19,8 @@ class Radiologi extends Model
     {
         if (!$this->path) return null;
 
-        // return route('radiologi.dokumen', $this->id);
+        return route('radiologi.dokumen', $this->id);
 
-        return URL::signedRoute('radiologi.dokumen', ['id' => $this->id]);
+        // return URL::signedRoute('radiologi.dokumen', ['id' => $this->id]);
     }
 }

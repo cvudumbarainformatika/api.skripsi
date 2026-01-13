@@ -120,12 +120,21 @@ class LaboratoriumController extends Controller
             abort(404, 'Dokumen belum diupload');
         }
 
+        $disk = Storage::disk('sftp_storage');
         if (!Storage::disk('sftp_storage')->exists($path)) {
             abort(404, 'File tidak ditemukan');
         }
-        // return Storage::disk('sftp_storage')->response($path);
-        $fullPath = Storage::disk('sftp_storage')->path($path);
+        // ambil isi file mentah
+        $stream = $disk->readStream($path);
 
-        return response()->file($fullPath);
+        return response()->stream(function () use ($stream) {
+            fpassthru($stream);
+        }, 200, [
+            'Content-Type' => $disk->mimeType($path),
+            'Content-Disposition' => 'inline; filename="' . basename($path) . '"',
+        ]);
+        // $fullPath = Storage::disk('sftp_storage')->path($path);
+
+        // return response()->file($fullPath);
     }
 }
