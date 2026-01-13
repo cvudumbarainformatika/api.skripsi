@@ -70,7 +70,10 @@ class LaboratoriumController extends Controller
             ]);
             DB::commit();
             $data = $result->append('dokumen_url');
-            return new JsonResponse($data);
+            return new JsonResponse([
+                'message' => 'Checklist keselamatan operasi berhasil disimpan.',
+                'data'    => $data
+            ]);
         } catch (\Throwable $e) {
             DB::rollBack();
             return new JsonResponse([
