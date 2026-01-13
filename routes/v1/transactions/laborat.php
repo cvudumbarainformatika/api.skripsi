@@ -13,7 +13,11 @@ Route::group([
 
   // Route::get('/dokumen', [LaboratoriumController::class, 'dokumen'])
   //   ->name('laborat.dokumen');
-  Route::get('/dokumen/{id}', [LaboratoriumController::class, 'dokumen'])
-    ->middleware('signed')   // ini ditaruh di sini
-    ->name('laborat.dokumen');
+  // Route::get('/dokumen/{id}', [LaboratoriumController::class, 'dokumen'])
+  //   ->middleware('signed')   // ini ditaruh di sini
+  //   ->name('laborat.dokumen');
 });
+// Yang khusus file (tanpa auth, pakai signed)
+Route::get('transaksi/penunjang-laborat/dokumen/{id}', [LaboratoriumController::class, 'dokumen'])
+  ->middleware('signed')
+  ->name('laborat.dokumen');
