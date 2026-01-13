@@ -29,7 +29,6 @@ class ChecklistKeselamatanOperasiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status'  => true,
                 'message' => 'Checklist keselamatan operasi berhasil disimpan.',
                 'data'    => $result
             ]);

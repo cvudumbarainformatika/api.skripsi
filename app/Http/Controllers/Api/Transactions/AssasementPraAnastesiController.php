@@ -15,15 +15,15 @@ class AssasementPraAnastesiController extends Controller
         $validateData = $request->validate(
             [
                 'noreg' => 'required',
-                'klassifikasi_asa' => 'nullable',
-                'keterangan_klassifikasi_asa' => 'nullable',
-                'jenis_anastesi' => 'nullable',
-                'hemostatika' => 'nullable',
-                'teknik_anastesi' => 'nullable',
-                'appt' => 'nullable',
-                'indikasi' => 'nullable',
-                'kode_user' => 'nullable',
-                'nama_pelaksana' => 'nullable',
+                'klassifikasi_asa' => 'nullable|string',
+                'keterangan_klassifikasi_asa' => 'nullable|string',
+                'jenis_anastesi' => 'nullable|string',
+                'hemostatika' => 'nullable|string',
+                'teknik_anastesi' => 'nullable|string',
+                'appt' => 'nullable|string',
+                'indikasi' => 'nullable|string',
+                'kode_user' => 'nullable|string',
+                'nama_pelaksana' => 'nullable|string',
             ],
             [
                 'noreg.required' => 'Nomor Registrasi Harus di isi ',
@@ -37,7 +37,10 @@ class AssasementPraAnastesiController extends Controller
                 $validateData
             );
             DB::commit();
-            return new JsonResponse($result);
+            return new JsonResponse([
+                'message' => 'Data berhasil disimpan.',
+                'data' => $result,
+            ]);
         } catch (\Throwable $e) {
             DB::rollBack();
             return new JsonResponse([

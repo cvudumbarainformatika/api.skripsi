@@ -88,7 +88,6 @@ class LaporanAnastesiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status' => true,
                 'message' => 'Laporan anestesi berhasil disimpan.',
                 'data' => $data,
             ]);

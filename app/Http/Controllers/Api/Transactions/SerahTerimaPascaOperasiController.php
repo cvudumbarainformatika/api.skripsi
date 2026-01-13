@@ -65,7 +65,6 @@ class SerahTerimaPascaOperasiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status'  => true,
                 'message' => 'Serah terima OK ke RR berhasil disimpan.',
                 'data'    => $result,
             ]);

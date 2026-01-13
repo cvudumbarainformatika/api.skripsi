@@ -64,8 +64,7 @@ class AskanAnastesiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status' => true,
-                'message' => 'Asuhan pra anestesi berhasil disimpan.',
+                'message' => 'Askan anestesi berhasil disimpan.',
                 'data' => $result,
             ]);
         } catch (Exception $e) {

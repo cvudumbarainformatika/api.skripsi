@@ -61,7 +61,8 @@ class RadiologiController extends Controller
                 ]);
             }
             DB::commit();
-            return new JsonResponse($result);
+            $data = $request->append('dokumen_url');
+            return new JsonResponse($data);
         } catch (\Throwable $e) {
             DB::rollBack();
             return new JsonResponse([

@@ -49,6 +49,7 @@ class KunjunganController extends Controller
     public function terima()
     {
         $data = Kunjungan::find(request('id'));
+        if (!$data) return new JsonResponse(['message' => 'Data paseian tidak ditemukan']);
         if ($data) {
             $data->load([
                 'pj',

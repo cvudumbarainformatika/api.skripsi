@@ -58,7 +58,6 @@ class ScorePascaAnastesiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status'  => true,
                 'message' => 'Score pasca anastesi berhasil disimpan.',
                 'data'    => $result,
             ]);

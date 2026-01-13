@@ -13,7 +13,7 @@ class SerahTerimaPreOperasi extends Model
     protected $hidden = ['updated_at', 'created_at'];
     protected $casts = [
         'kesadaran' => 'array',
-        'riwayat_alergi_obat' => 'array',
+        'riwayat_penyakit' => 'array',
         'persiapan_operasi' => 'array',
         'alat_kesehatan' => 'array',
         'jenis_darah' => 'array',

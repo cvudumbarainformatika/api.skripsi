@@ -57,7 +57,6 @@ class AsessementPraInduksiController extends Controller
             DB::commit();
 
             return response()->json([
-                'status'  => true,
                 'message' => 'Data berhasil diperbarui',
                 'data'    => $data
             ]);
