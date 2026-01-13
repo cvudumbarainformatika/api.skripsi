@@ -117,12 +117,12 @@ class LaboratoriumController extends Controller
         $path = $data->path; // 👈 INI JAWABANNYA
 
         if (!$path) {
-            abort(404, 'Dokumen belum diupload');
+            abort(410, 'Dokumen belum diupload');
         }
 
         $disk = Storage::disk('sftp_storage');
         if (!Storage::disk('sftp_storage')->exists($path)) {
-            abort(404, 'File tidak ditemukan');
+            abort(410, 'File tidak ditemukan');
         }
         // ambil isi file mentah
         $stream = $disk->readStream($path);

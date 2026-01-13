@@ -63,7 +63,7 @@ return [
             'port' => (int) env('SFTP_PORT', 22),
             'root' => env('SFTP_ROOT', '/www/wwwroot/storage'), // folder tujuan di CT storage
             'timeout' => 30,
-            // 'useBinary' => true,   // 👈 PENTING
+            'useBinary' => true,   // 👈 PENTING
             'throw' => true,
         ],
 
