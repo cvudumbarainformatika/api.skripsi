@@ -72,6 +72,7 @@ class KunjunganController extends Controller
                 ->orWhere('noreg', request('noreg'));
         })
             ->with([
+                'pasien',
                 'dr_anastesi',
                 'dr_operator',
                 'pj',
