@@ -16,8 +16,7 @@ class LaporanAnastesiController extends Controller
      */
     protected function validator(Request $request)
     {
-        return $request->valdate(
-
+        return $request->validate(
             $this->rules(),
             $this->messages()
         );
@@ -81,8 +80,8 @@ class LaporanAnastesiController extends Controller
 
 
             $data = LaporanAnastesi::updateOrCreate(
-                ['noreg' => $validated->noreg],
-                $validated->except('noreg')
+                ['noreg' => $validated['noreg']],
+                $validated
             );
 
             DB::commit();
