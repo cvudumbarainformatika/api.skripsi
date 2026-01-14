@@ -36,6 +36,7 @@ class LaporanAnastesiController extends Controller
             'intubasi' => 'nullable|array',
             'ventilasi' => 'nullable|array',
             'regional_anestesi' => 'nullable|array',
+            'monitoring_anestesi' => 'nullable|array',
 
             // STRING
             'infus' => 'nullable|string',
@@ -65,6 +66,7 @@ class LaporanAnastesiController extends Controller
             'intubasi.array' => 'Data intubasi harus berupa array.',
             'ventilasi.array' => 'Data ventilasi harus berupa array.',
             'regional_anestesi.array' => 'Regional anestesi harus berupa array.',
+            'monitoring_anestesi.array' => 'Monitoring anestesi harus berupa array.',
         ];
     }
 

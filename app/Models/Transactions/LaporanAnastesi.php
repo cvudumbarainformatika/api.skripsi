@@ -14,7 +14,7 @@ class LaporanAnastesi extends Model
     protected $hidden = ['updated_at', 'created_at'];
 
     protected $casts = [
-        'infus_tempat_ukuran'      => 'array',
+        'klasifikasi_asa'          => 'array',
         'posisi_pasien'            => 'array',
         'premedikasi'              => 'array',
         'induksi'                  => 'array',

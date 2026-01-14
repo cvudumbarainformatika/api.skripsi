@@ -22,7 +22,7 @@ return new class extends Migration
             /**
              * INFUS
              */
-            $table->text('infus_tempat_ukuran')->nullable(); // array
+            $table->text('infus')->nullable(); // array
 
             /**
              * POSISI PASIEN
