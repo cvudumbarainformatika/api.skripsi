@@ -45,10 +45,14 @@ class LaporanAnastesiController extends Controller
             'waktu_selesai' => 'nullable|string',
             'lama_anestesi' => 'nullable|string',
             'lama_operasi' => 'nullable|string',
+            'komplikasi_anestesi' => 'nullable|string',
 
             'jumlah_cairan' => 'nullable|string',
             'jumlah_perdarahan' => 'nullable|string',
             'urin' => 'nullable|string',
+
+            'tanggal_mulai' => 'nullable|date',
+            'tanggal_selesai' => 'nullable|date',
         ];
     }
 
@@ -103,6 +107,41 @@ class LaporanAnastesiController extends Controller
             ], 500);
         }
     }
+    public function simpanMonitoring(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $validated =  $request->validate(
+                [
+                    'noreg' => 'required|string',
+                    'monitoring_anestesi' => 'required|array'
+                ],
+                [
+                    'noreg.required' => 'No registrasi wajib diisi.',
+                    'monitoring_anestesi.array' => 'Monitoring anestesi harus berupa array.',
+                ]
+            );
+            $data = LaporanAnastesi::updateOrCreate(
+                ['noreg' => $validated['noreg']],
+                $validated
+            );
+            DB::commit();
+            return response()->json([
+                'status' => true,
+                'data' => $data,
+                'message' => 'Data berhasil Update.',
+            ]);
+        } catch (Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'status' => false,
+                'message' => 'Terjadi kesalahan saat menghapus data.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
+
+
 
     /**
      * ================= HAPUS =================
@@ -114,6 +153,7 @@ class LaporanAnastesiController extends Controller
                 ['noreg' => 'required|string'],
                 ['noreg.required' => 'No registrasi wajib diisi.']
             );
+
 
             $data = LaporanAnastesi::where('noreg', $validated['noreg'])->first();
 
