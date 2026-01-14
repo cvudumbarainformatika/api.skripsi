@@ -88,6 +88,7 @@ class KunjunganController extends Controller
                 'score_pasca_anastesi',
                 'pemantauan_pasca_anastesi',
                 'pemakaian_obat_alkes',
+                'laporan_anastesi',
             ])
             ->first();
         if ($data->laboratorium) $data->laboratorium->append('dokumen_url');
