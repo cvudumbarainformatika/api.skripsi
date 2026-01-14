@@ -86,8 +86,9 @@ class LaporanAnastesiController extends Controller
             $validated = $this->validator($request);
 
 
-            $data = LaporanAnastesi::create(
-                $validated,
+            $data = LaporanAnastesi::updateOrCreate(
+                ['noreg' => $validated['noreg']],
+                $validated
             );
 
             DB::commit();
