@@ -130,6 +130,7 @@ class AuthController extends Controller
         $token = $user->createToken($user->name . '-AuthToken')->plainTextToken;
         return new JsonResponse([
             'token' => $token,
+            'user' => $user
         ]);
     }
     public function logout(Request $request)
