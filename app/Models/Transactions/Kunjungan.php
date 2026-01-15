@@ -82,4 +82,8 @@ class Kunjungan extends Model
     {
         return $this->belongsTo(PemakaianObatAlkes::class, 'noreg', 'noreg');
     }
+    public function laporan_anastesi()
+    {
+        return $this->belongsTo(LaporanAnastesi::class, 'noreg', 'noreg');
+    }
 }

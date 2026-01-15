@@ -15,6 +15,7 @@ class LaporanAnastesi extends Model
 
     protected $casts = [
         'infus_tempat_ukuran'      => 'array',
+        'klasifikasi_asa'          => 'array',
         'posisi_pasien'            => 'array',
         'premedikasi'              => 'array',
         'induksi'                  => 'array',

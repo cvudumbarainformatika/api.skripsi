@@ -53,7 +53,10 @@ class SerahTerimaPreOperasiController extends Controller
 
             if (!$result) throw new Exception('Data gagal di simpan');
             DB::commit();
-            return new JsonResponse($result);
+            return new JsonResponse([
+                'message' => 'Data berhasil disimpan.',
+                'data'    => $result
+            ]);
         } catch (\Throwable $e) {
             DB::rollBack();
             return new JsonResponse([

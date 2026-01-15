@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Api\Transactions;
 
 use App\Http\Controllers\Controller;
-use App\Models\Transactions\ChecklistKeselamatanOperasi;
+use App\Models\Transactions\CheckListKeselamatanOperasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\ValidationException;
@@ -21,7 +21,7 @@ class ChecklistKeselamatanOperasiController extends Controller
         try {
             $data = $this->validateRequest($request);
 
-            $result = ChecklistKeselamatanOperasi::updateOrCreate(
+            $result = CheckListKeselamatanOperasi::updateOrCreate(
                 ['noreg' => $data['noreg']],
                 $data
             );

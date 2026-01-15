@@ -67,6 +67,7 @@ return new class extends Migration
             /**
              * WAKTU & DURASI
              */
+            $table->string('komplikasi_anestesi')->nullable();
             $table->string('tanggal_anestesi')->nullable();
             $table->string('jam_mulai')->nullable();
             $table->string('jam_selesai')->nullable();
@@ -84,6 +85,9 @@ return new class extends Migration
             $table->string('jumlah_cairan')->nullable();
             $table->string('jumlah_perdarahan')->nullable();
             $table->string('urin')->nullable();
+
+            $table->dateTime('tanggal_mulai')->nullable();
+            $table->dateTime('tanggal_selesai')->nullable();
 
             $table->timestamps();
         });
