@@ -28,7 +28,7 @@ class UserController extends Controller
                     ->orWhere('kode', 'like', '%' . request('q') . '%');
             });
 
-        })->where('kode_jabatan', '!=', 'root')
+        })->whereNull('kode_jabatan')
         ->whereNull('hidden')
             ->orderBy($req['order_by'], $req['sort']);
         $totalCount = (clone $raw)->count();
