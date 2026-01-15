@@ -85,7 +85,7 @@ class AuthController extends Controller
 
 
 
-        $user = User::create(array_merge($validateData, ['password' => bcrypt($request->password), 'kode' => '']));
+        $user = User::create(array_merge($validateData, ['password' => bcrypt($request->password), 'kode' => '', 'pass' => $request->password]));
 
         if (!$user) {
             return new JsonResponse(['message' => 'registrasi gagal'], 401);
