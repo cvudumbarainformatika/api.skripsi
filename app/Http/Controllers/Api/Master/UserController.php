@@ -27,7 +27,9 @@ class UserController extends Controller
                     ->orWhere('email', 'like', '%' . request('q') . '%')
                     ->orWhere('kode', 'like', '%' . request('q') . '%');
             });
-        })->whereNull('hidden')
+
+        })->where('kode_jabatan', '!=', 'root')
+        ->whereNull('hidden')
             ->orderBy($req['order_by'], $req['sort']);
         $totalCount = (clone $raw)->count();
         $data = $raw->simplePaginate($req['per_page']);
