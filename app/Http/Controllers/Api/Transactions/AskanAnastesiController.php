@@ -18,6 +18,7 @@ class AskanAnastesiController extends Controller
         return $request->validate(
             [
                 'noreg' => 'required|string',
+                'fase' => 'nullable|string',
 
                 'askan_data' => 'nullable|array',
 
