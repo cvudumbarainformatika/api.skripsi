@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Transactions\AskanAnastesi;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class AskanAnastesiController extends Controller
@@ -50,7 +51,7 @@ class AskanAnastesiController extends Controller
     public function simpan(Request $request)
     {
         DB::beginTransaction();
-
+        $user = Auth::user();
         try {
             $data = $this->validateRequest($request);
 
@@ -59,7 +60,10 @@ class AskanAnastesiController extends Controller
                     'noreg' => $data['noreg'],
                     'fase'  => $data['fase'],
                 ],
-                ['askan_data' => $data['askan_data'] ?? null]
+                [
+                    'askan_data' => $data['askan_data'] ?? null,
+                    'user_id' => $user->id
+                ]
             );
 
             DB::commit();

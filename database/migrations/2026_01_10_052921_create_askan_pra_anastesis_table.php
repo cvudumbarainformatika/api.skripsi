@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('noreg')->unique();
             $table->string('fase');
+            $table->bigInteger('user_id');
             $table->text('askan_data')->nullable();
             $table->timestamps();
 
