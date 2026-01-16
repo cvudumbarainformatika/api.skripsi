@@ -2,6 +2,7 @@
 
 use App\Helpers\Routes\RouteHelper;
 use App\Http\Controllers\Api\Transactions\LaboratoriumController;
+use App\Http\Controllers\Api\Transactions\RadiologiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,3 +26,7 @@ Route::prefix('v1')->group(function () {
 });
 
 // Route::get('/dokumen/{id}', [LaboratoriumController::class, 'dokumen']);
+Route::get('/radiologi/{id}/dokumen', [RadiologiController::class, 'dokumen'])
+    ->name('radiologi.dokumen');
+Route::get('/laborat/{id}/dokumen', [LaboratoriumController::class, 'dokumen'])
+    ->name('laborat.dokumen');
