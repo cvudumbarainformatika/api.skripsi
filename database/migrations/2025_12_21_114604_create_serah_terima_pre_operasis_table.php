@@ -1,0 +1,45 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('serah_terima_pre_operasis', function (Blueprint $table) {
+            $table->id();
+            $table->string('noreg')->unique();
+            $table->text('kesadaran')->nullable();
+            $table->string('riwayat_penyakit', 50)->nullable();
+            $table->string('riwayat_penyakit_lain', 50)->nullable();
+            $table->text('riwayat_alergi_obat')->nullable();
+            $table->string('jenis_alergi_obat', 50)->nullable();
+            $table->string('reaksi_alergi_obat', 50)->nullable();
+            $table->text('persiapan_operasi')->nullable();
+            $table->string('mulai_puasa', 50)->nullable();
+            $table->string('hasil_pemeriksaan')->nullable();
+            $table->text('alat_kesehatan')->nullable();
+            $table->string('alat_kesehatan_lainnya', 50)->nullable();
+            $table->text('jenis_darah')->nullable();
+            $table->string('jumlah_darah', 50)->nullable();
+            $table->string('vital_td', 50)->nullable();
+            $table->string('vital_n', 50)->nullable();
+            $table->string('vital_s', 50)->nullable();
+            $table->string('vital_rr', 50)->nullable();
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('serah_terima_pre_operasis');
+    }
+};
