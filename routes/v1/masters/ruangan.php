@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
   // 'middleware' => 'auth:api',
-//   'middleware' => 'auth:sanctum',
+  'middleware' => 'auth:sanctum',
   'prefix' => 'master/ruangan'
 ], function () {
   Route::get('/get-list', [RuanganController::class, 'index']);
