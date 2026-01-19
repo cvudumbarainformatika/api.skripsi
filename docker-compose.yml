@@ -10,8 +10,6 @@ services:
         container_name: emars-app
         working_dir: /var/www/
         restart: unless-stopped
-        # ports:
-        #     - "8001:8000" # Menghindari konflik port dengan Nginx
         environment:
             - COMPOSER_MEMORY_LIMIT=-1
         volumes:
@@ -19,35 +17,7 @@ services:
         networks:
             - skripsinet
         depends_on:
-            # - db
             - redis
-
-    # db:
-    #     image: mysql/mysql-server:5.7
-    #     platform: linux/amd64
-    #     container_name: mysql_emars
-    #     restart: unless-stopped
-    #     environment:
-    #         MYSQL_DATABASE: ${DB_DATABASE:-local_laravel}
-    #         MYSQL_USER: ${DB_USERNAME:-local_developer}
-    #         MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
-    #         MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
-    #     ports:
-    #         - "3358:3306"
-    #     volumes:
-    #         - mysql_data:/var/lib/mysql
-    #         - ./docker-compose/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-    #     networks:
-    #         - skripsinet
-    #     healthcheck:
-    #         test:
-    #             [
-    #                 "CMD-SHELL",
-    #                 "mysqladmin ping -h localhost -u root -p$${MYSQL_ROOT_PASSWORD}",
-    #             ]
-    #         interval: 10s
-    #         timeout: 5s
-    #         retries: 10
 
     nginx:
         image: nginx:alpine
@@ -81,21 +51,6 @@ services:
             - "26758:6379"
         networks:
             - skripsinet
-
-    # scheduler:
-    #     image: emars-app # Pakai image dari app
-    #     container_name: emars-scheduler
-    #     command: ["php", "artisan", "schedule:work"]
-    #     depends_on:
-    #         - app
-    #         - redis
-    #         - db
-    #     volumes:
-    #         - ./:/var/www
-    #     env_file:
-    #         - .env
-    #     networks:
-    #         - skripsinet
 
 volumes:
     mysql_data:
