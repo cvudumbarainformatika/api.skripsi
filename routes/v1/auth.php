@@ -3,16 +3,11 @@
 use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::group([
-    // 'middleware' => 'auth:api',
-    // 'middleware' => 'jwt.verify',
-    'prefix' => 'auth'
-], function () {
+Route::group([], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
 });
 Route::group([
-    // 'middleware' => 'auth:api',
     'middleware' => 'auth:sanctum',
     'prefix' => 'auth'
 ], function () {
