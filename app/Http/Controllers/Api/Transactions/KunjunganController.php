@@ -67,10 +67,11 @@ class KunjunganController extends Controller
         //         'pemakaian_obat_alkes',
         //     ]);
         // }
-        $data = Kunjungan::where(function ($q) {
-            $q->where('id', request('id'))
-                ->orWhere('noreg', request('noreg'));
-        })
+        $data = Kunjungan::select('kunjungans.*', 'pasiens.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm')
+            ->where(function ($q) {
+                $q->where('kunjungans.id', request('id'))
+                    ->orWhere('kunjungans.noreg', request('noreg'));
+            })
             ->with([
                 'pasien',
                 'dr_anastesi',
