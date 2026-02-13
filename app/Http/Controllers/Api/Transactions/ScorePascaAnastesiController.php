@@ -7,9 +7,15 @@ use App\Models\Transactions\ScorePascaAnastesi;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ScorePascaAnastesiController extends Controller
 {
+    public function index()
+    {
+        $data = ScorePascaAnastesi::where('noreg', request('noreg'))->first();
+        return new JsonResponse($data);
+    }
     /**
      * ================= RULES =================
      */
