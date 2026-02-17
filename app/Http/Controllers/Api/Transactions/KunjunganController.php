@@ -20,14 +20,14 @@ class KunjunganController extends Controller
     {
         $req = [
             'order_by' => 'kunjungans.' . (request('order_by') ?? 'created_at'),
-            'sort' => request('sort') ?? 'asc',
+            'sort' => request('sort') ?? 'desc',
             'page' => request('page') ?? 1,
             'per_page' => request('per_page') ?? 10,
             'from' => request('from') . ' 00:00:00' ?? date('Y-m-d') . ' 00:00:00',
             'to' => request('to') . ' 23:59:59' ?? date('Y-m-d') . ' 23:59:59',
         ];
         $raw = Kunjungan::query();
-        $raw->select('kunjungans.*', 'pasiens.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm');
+        $raw->select('kunjungans.id as kunjungan_id','kunjungans.*', 'pasiens.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm');
         $raw->when(request('q'), function ($k) {
             $k->where(function ($q) {
                 $q->where('pasiens.nama', 'like', '%' . request('q') . '%')
@@ -67,15 +67,15 @@ class KunjunganController extends Controller
         //         'pemakaian_obat_alkes',
         //     ]);
         // }
-        $data = Kunjungan::select('kunjungans.*', 'pasiens.*')->leftJoin('pasiens', 'pasiens.norm', '=', 'kunjungans.norm')
+        $data = Kunjungan::select('kunjungans.id as kunjungan_id','kunjungans.*', 'pasiens.*')->join('pasiens', 'pasiens.norm', '=', 'kunjungans.norm')
             ->where(function ($q) {
                 $q->where('kunjungans.id', request('id'))
                     ->orWhere('kunjungans.noreg', request('noreg'));
             })
             ->with([
                 'pasien',
-                'dr_anastesi',
-                'dr_operator',
+                // 'dr_anastesi',
+                // 'dr_operator',
                 'pj',
                 'sertipreop',
                 'pengkajian_pre_anastesi',
