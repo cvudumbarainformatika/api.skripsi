@@ -178,4 +178,37 @@ class LaporanAnastesiController extends Controller
             ], 500);
         }
     }
+
+    public function hapusitemtabel(Request $request)
+    {
+        try {
+            $validated =  $request->validate(
+                ['noreg' => 'required|string'],
+                ['noreg.required' => 'No registrasi wajib diisi.']
+            );
+
+
+            $data = LaporanAnastesi::where('noreg', $validated['noreg'])->first();
+
+            if (!$data) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Data tidak ditemukan.',
+                ], 404);
+            }
+
+            $data->update(['monitoring_anestesi' => $request->monitoring_anestesi]);
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Data berhasil dihapus.',
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Terjadi kesalahan saat menghapus data.',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
+    }
 }

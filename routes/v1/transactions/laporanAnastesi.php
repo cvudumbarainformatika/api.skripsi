@@ -10,4 +10,5 @@ Route::group([
   Route::post('/simpan', [LaporanAnastesiController::class, 'simpan']);
   Route::post('/simpan-monitoring', [LaporanAnastesiController::class, 'simpanMonitoring']);
   Route::post('/delete', [LaporanAnastesiController::class, 'hapus']);
+  Route::post('/hapusitemtabel', [LaporanAnastesiController::class, 'hapusitemtabel']);
 });
