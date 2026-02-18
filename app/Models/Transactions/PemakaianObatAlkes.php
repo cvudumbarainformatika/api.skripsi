@@ -16,5 +16,6 @@ class PemakaianObatAlkes extends Model
         'cairan' => 'array',
         'alkes'  => 'array',
         'obat'   => 'array',
+        'gasanastesi'   => 'array',
     ];
 }

@@ -20,7 +20,7 @@ class SerahTerimaPreOperasiController extends Controller
                 'kesadaran' => 'nullable|array',
                 'riwayat_penyakit' => 'nullable|array',
                 'riwayat_penyakit_lain' => 'nullable|string',
-                'riwayat_alergi_obat' => 'nullable|string',
+                // 'riwayat_alergi_obat' => 'nullable|string',
                 'jenis_alergi_obat' => 'nullable|string',
                 'reaksi_alergi_obat' => 'nullable|string',
                 'persiapan_operasi' => 'nullable|array',

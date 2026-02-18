@@ -16,6 +16,8 @@ class PemakaianObatAlkesController extends Controller
             'cairan' => 'nullable|array',
             'alkes'  => 'nullable|array',
             'obat'   => 'nullable|array',
+            'obat'   => 'nullable|array',
+            'gasanastesi'   => 'nullable|array',
         ]);
 
         $data = PemakaianObatAlkes::updateOrCreate(
@@ -24,6 +26,7 @@ class PemakaianObatAlkesController extends Controller
                 'cairan' => $request->cairan,
                 'alkes'  => $request->alkes,
                 'obat'   => $request->obat,
+                'gasanastesi'   => $request->gasanastesi,
             ]
         );
 
