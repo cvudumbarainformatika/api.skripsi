@@ -31,7 +31,7 @@ class LaboratoriumController extends Controller
                 'eritrosit' => 'nullable',
                 'hemoglobin' => 'nullable',
                 'hematokrit' => 'nullable',
-                'lainnya' => 'nullable|array',
+                'lainnya' => 'nullable',
                 'dokumen' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:1024',
             ],
             [
@@ -71,7 +71,7 @@ class LaboratoriumController extends Controller
             DB::commit();
             $data = $result->append('dokumen_url');
             return new JsonResponse([
-                'message' => 'Checklist keselamatan operasi berhasil disimpan.',
+                'message' => 'Data berhasil disimpan.',
                 'data'    => $data
             ]);
         } catch (\Throwable $e) {

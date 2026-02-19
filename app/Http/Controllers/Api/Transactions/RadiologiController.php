@@ -19,6 +19,7 @@ class RadiologiController extends Controller
                 'noreg' => 'required',
                 'norm' => 'required',
                 'nama_pemeriksaan' => 'nullable',
+                'hasil_bacaan' => 'nullable',
                 'dokumen' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:1024',
             ],
             [
@@ -38,11 +39,13 @@ class RadiologiController extends Controller
                         $result = Radiologi::create([
                             'noreg' => $request->noreg,
                             'nama_pemeriksaan' => $request->nama_pemeriksaan,
+                            'hasil_bacaan' => $request->hasil_bacaan,
                             'path' => $path,
                         ]);
                     } else {
                         $ada->update([
                             'nama_pemeriksaan' => $request->nama_pemeriksaan,
+                            'hasil_bacaan' => $request->hasil_bacaan,
                             'path' => $path,
                         ]);
                         $result = $ada;
@@ -50,6 +53,7 @@ class RadiologiController extends Controller
                 } else if ($request->nama_pemeriksaan != null && $ada) {
                     $ada->update([
                         'nama_pemeriksaan' => $request->nama_pemeriksaan,
+                        'hasil_bacaan' => $request->hasil_bacaan,
                     ]);
                     $result = $ada;
                 }
@@ -57,7 +61,8 @@ class RadiologiController extends Controller
                 $result = Radiologi::updateOrCreate([
                     'noreg' => $request->noreg
                 ], [
-                    'nama_pemeriksaan' => $request->nama_pemeriksaan
+                    'nama_pemeriksaan' => $request->nama_pemeriksaan,
+                    'hasil_bacaan' => $request->hasil_bacaan
                 ]);
             }
             DB::commit();

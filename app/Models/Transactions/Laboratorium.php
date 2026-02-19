@@ -14,9 +14,9 @@ class Laboratorium extends Model
     protected $guarded = ['id'];
     protected $hidden = ['updated_at', 'created_at'];
     protected $appends = ['dokumen_url'];
-    protected $casts = [
-        'lainnya' => 'array',
-    ];
+    // protected $casts = [
+    //     'lainnya' => 'array',
+    // ];
 
     public function getDokumenUrlAttribute()
     {
